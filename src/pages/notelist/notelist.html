@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Note list</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+		<div *ngFor="let note of notes">
+			<notehandler [note]="note" [categories]="categories" (saveNote)="saveNote(note)" (deleteNote)="deleteNote(note)"></notehandler><!-- --> 
+		</div>
+</ion-content>

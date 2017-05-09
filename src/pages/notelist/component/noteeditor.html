@@ -1,0 +1,90 @@
+
+
+	<ion-list>
+
+		<ion-item>
+
+
+					<ion-label>Note Name</ion-label>
+
+					<ion-input type="text" [(ngModel)]="noteEdit.title"></ion-input>
+
+
+
+		</ion-item>
+
+		<ion-item>
+				<ion-label>Note Content</ion-label>
+				<ion-input type="text" [(ngModel)]="noteEdit.content"></ion-input>
+		</ion-item>
+		<ion-item>
+				
+					<ion-label>Category</ion-label>
+
+
+					<ion-select interface="popover" [(ngModel)]="noteEdit.category" class="item item-block item-ios item-select input-has-value">
+						<ion-option *ngFor="let category of categories" [value]="category">{{category.label}}</ion-option>
+					</ion-select>
+
+		</ion-item>
+		<ion-item>
+			<ion-row>
+				<ion-col>
+					<button ion-button full color="secondary" (click)="SaveNote(noteEdit)" [disabled]="!isFormValid()"><i class="fa fa-book" aria-hidden="true"></i> Save</button>
+				</ion-col>
+				<ion-col>
+					<button ion-button full color="danger" (click)="CancelEdit()"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+				</ion-col>
+			</ion-row>	
+		</ion-item>
+	</ion-list>
+	
+
+
+
+
+
+<!-- <div>
+	<div class="form-group">
+		<div class="row">
+			<div class="col-xs-3">
+				<label>Note name</label>
+			</div>
+			<div class="col-xs-9">
+				<input [(ngModel)]="noteEdit.title" type="text" class="form-control" placeholder='My note title'>
+			</div>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="row">
+			<div class="col-xs-3">
+				<label>Note content</label>
+			</div>
+			<div class="col-xs-9">
+				<input [(ngModel)]="noteEdit.content" type="text" class="form-control" placeholder='My note content'>
+			</div>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="row">
+			<div class="col-xs-3">
+				<label>Note category</label>
+			</div>
+			<div class="col-xs-9">
+				
+				<select class="form-control" [(ngModel)]="noteEdit.category"> 
+					<option *ngFor="let category of categories" [value]="category">{{category.label}}</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="pull-right">
+	<button role="button" class="btn btn-success" (click)="SaveNote(noteEdit)" [disabled]="!isFormValid()"><i class="fa fa-book" aria-hidden="true"></i>&nbsp; Save Note</button>
+	<button role="button" class="btn btn-warning" (click)="CancelEdit()"><i class="fa fa-times" aria-hidden="true"></i>&nbsp; Cancel</button>
+	
+	
+	</div>
+	<br/><br/>
+</div> -->

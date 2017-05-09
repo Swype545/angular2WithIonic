@@ -1,0 +1,44 @@
+<div>
+	<div class="form-group">
+		<div class="row">
+			<div class="col-xs-3">
+				<label>Note name</label>
+			</div>
+			<div class="col-xs-9">
+				<input [(ngModel)]="noteEdit.title" type="text" class="form-control" placeholder='My note title'>
+			</div>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="row">
+			<div class="col-xs-3">
+				<label>Note content</label>
+			</div>
+			<div class="col-xs-9">
+				<input [(ngModel)]="noteEdit.content" type="text" class="form-control" placeholder='My note content'>
+			</div>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="row">
+			<div class="col-xs-3">
+				<label>Note category</label>
+			</div>
+			<div class="col-xs-9">
+				<!--<input [(ngModel)]="noteEdit.category.label" type="text" class="form-control" placeholder='My note category'>-->
+				<select class="form-control" [(ngModel)]="noteEdit.category"> 
+					<option *ngFor="let category of categories"  [value]="category">{{category.label}}</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="pull-right">
+	<button role="button" class="btn btn-success" (click)="SaveNote(noteEdit)" [disabled]="!isFormValid()"><i class="fa fa-book" aria-hidden="true"></i>&nbsp; Save Note</button>
+	<button role="button" class="btn btn-warning" (click)="CancelEdit()"><i class="fa fa-times" aria-hidden="true"></i>&nbsp; Cancel</button>
+	
+	
+	</div>
+	<br/><br/>
+</div>

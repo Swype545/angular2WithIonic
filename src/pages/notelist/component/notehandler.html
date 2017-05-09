@@ -1,0 +1,35 @@
+<ion-card class="card card-ios">
+	<ion-card-header>
+		<ion-card-title>
+			<ion-row>
+			
+				<ion-col>{{note.title}}</ion-col>
+				<ion-col text-right><i>{{note.category.label}}</i></ion-col>
+			
+			</ion-row>
+		</ion-card-title>
+	</ion-card-header>
+	<ion-card-content class="card-content card-content-ios">
+		{{note.content}}<br/><br/>
+		<ion-row>
+			{{note.date.timestamp *1000| date:'dd-MM-yyyy'}}
+		</ion-row>
+	</ion-card-content>
+	
+	
+	<ion-row>
+		<ion-col>
+			<button ion-button full color="default" (click)="modifying = true;">Modify Note</button>
+		</ion-col>
+		<ion-col>
+			<button ion-button full color="danger" (click)="delNote(note)">Delete Note</button>
+		</ion-col>
+	</ion-row>
+	<ion-row>
+		<div *ngIf="modifying">	
+			<noteeditor [noteEdit]="note" [categories]="categories" (closeModify)="closeModify(note)"></noteeditor><!--  -->
+		</div>
+	</ion-row>
+	
+</ion-card>
+			
