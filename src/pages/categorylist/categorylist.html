@@ -4,14 +4,33 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Categorylist</ion-title>
+	<ion-buttons end (click)="goToNewCategory()"> 
+		<button ion-button large>
+			<ion-icon name="md-create"></ion-icon>
+		</button>
+	</ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 	<ion-list>
-		<ion-item ion-item *ngFor="let category of categories">
-			{{category.label}}
+		<ion-item ion-item item-end *ngFor="let category of categories">
+			<div *ngIf="!modify">{{category.label}}</div>
+			<ion-input *ngIf="modify" type="text" [(ngModel)]="category.label"></ion-input>
+			<button ion-button item-right (click)="deleteCategory(category)" [disabled]="!modify">
+				<ion-icon name="ion-close"></ion-icon>delete 
+			</button>
 		</ion-item>
-	
+		<ion-row>
+			<ion-col>
+				<button ion-button full  color="secondary" (click)="saveEdit(categories)" *ngIf="modify">Save Edit</button>
+			</ion-col>
+			<ion-col>
+				<button ion-button full  color="default" (click)="editCategories()" *ngIf="!modify">Edit Categories</button>
+				<button ion-button full  color="danger" (click)="cancelEdit()" *ngIf="modify">Cancel Edit</button>
+			</ion-col>
+		</ion-row>
 	</ion-list>
+	
+	
 </ion-content>

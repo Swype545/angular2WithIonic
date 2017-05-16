@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Category } from '../../app/classes';
+import {ToastController } from 'ionic-angular';
 
 import { CategoriesService } from '../../app/categories.service'
+import { NewCategoryPage } from '../newcategory/newcategory';
 
 @Component({
   selector: 'page-categorylist',
@@ -11,7 +13,7 @@ import { CategoriesService } from '../../app/categories.service'
 })
 export class CategoryListPage implements OnInit{
 
-  constructor(public navCtrl: NavController, private categoriesService: CategoriesService) {}
+  constructor(public navCtrl: NavController, private categoriesService: CategoriesService, private toastCtrl: ToastController) {}
 
   public categories:Category[];	
 	public oldCategories: Category[];
@@ -56,8 +58,13 @@ export class CategoryListPage implements OnInit{
 			data => { 
 						console.log(data);
 						this.loadCategories();
+						this.presentToast("A category has been deleted");
 					},
-			err => console.error(err),
+			err => {
+						this.presentToast("Couldn't delete this category");
+						console.error(err);
+					},
+				
 			() => console.log(this.categories));
 	};
 	
@@ -83,5 +90,23 @@ export class CategoryListPage implements OnInit{
     	});
     	return newArray;
   	}
+	
+	goToNewCategory(){
+		this.navCtrl.setRoot(NewCategoryPage);
+	}
+	
+	presentToast(message:string) {
+	  let toast = this.toastCtrl.create({
+		message: message,
+		duration: 3000,
+		position: 'top'
+	  });
+
+	  toast.onDidDismiss(() => {
+		console.log('Dismissed toast');
+	  });
+
+	  toast.present();
+	}
 
 }

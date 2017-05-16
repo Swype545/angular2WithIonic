@@ -2,8 +2,15 @@
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
+	  
     </button>
     <ion-title>Note list</ion-title>
+	<ion-buttons end (click)="goToNewNote()"> 
+		<button ion-button large>
+			<ion-icon name="md-create"></ion-icon>
+		</button>
+	</ion-buttons>
+	
   </ion-navbar>
 </ion-header>
 

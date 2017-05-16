@@ -8,5 +8,32 @@
 </ion-header>
 
 <ion-content padding>
+<ion-card>
+<ion-list>
+		<ion-item>
+			<ion-label>Note Name</ion-label>
+			<ion-input type="text" [(ngModel)]="newNote.title"></ion-input>
+		</ion-item>
 
+		<ion-item>
+				<ion-label>Note Content</ion-label>
+				<ion-input type="text" [(ngModel)]="newNote.content"></ion-input>
+		</ion-item>
+		<ion-item>
+				
+					<ion-label>Category</ion-label>
+
+
+					<ion-select interface="popover" [(ngModel)]="newNote.category" class="item item-block item-ios item-select input-has-value">
+						<ion-option *ngFor="let category of categories" [value]="category">{{category.label}}</ion-option>
+					</ion-select>
+
+		</ion-item>
+		<ion-item>
+			<ion-row>
+					<button ion-button full color="default" (click)="createNote(noteEdit)" [disabled]="!isFormValid()"><ion-icon name="ios-book-outline"></ion-icon> &nbsp; Save</button>
+			</ion-row>	
+		</ion-item>
+	</ion-list>
+</ion-card>
 </ion-content>
